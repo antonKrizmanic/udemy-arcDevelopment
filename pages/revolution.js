@@ -1,20 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Lottie from "lottie-react";
 import { makeStyles, useTheme } from '@mui/styles';
-import { Grid, Button, Typography, IconButton, Hidden } from '@mui/material';
+import { Grid, Button, Typography } from '@mui/material';
 import { useMediaQuery } from '@mui/material';
-import CallToAction from './ui/CallToAction';
-import vision from '../assets/vision.svg';
-import technologyAnimation from '../animations/technologyAnimation/data.json';
-import consultation from '../assets/consultationIcon.svg';
-import mockup from '../assets/mockupIcon.svg';
-import review from '../assets/reviewIcon.svg';
-import design from '../assets/designIcon.svg';
-import build from '../assets/buildIcon.svg';
-import launch from '../assets/launchIcon.svg';
-import maintain from '../assets/maintainIcon.svg';
-import iterate from '../assets/iterateIcon.svg';
+import technologyAnimation from '../src/animations/technologyAnimation/data.json';
+import Head from 'next/head';
 
 const useStyles = makeStyles(theme => ({
     rowContainer: {
@@ -35,8 +25,15 @@ export default function Revolution(props) {
 
     return (
         <Grid container direction="column">
+            <Head>
+                <title key="title">The revolution - cutting edge software | Arc Development</title>
+                <meta name="description" key="description" content="We provide the best services in the world. Get a free online estimate now!" />
+                <meta key="og:title" property="og:title" content="Bringing West Coasts Technology to the Midwest | Revolution" />
+                <meta key="og:url" property="og:url" content="arc.com/revolution" />
+                <link rel="canonical" key="canonical" href="https://www.arc.com/revolution" />
+            </Head>
             <Grid item className={classes.rowContainer} sx={{ marginTop: "2em" }}>
-                <Typography variant="h2"
+                <Typography variant="h1"
                     sx={{
                         fontFamily: "Pacifico",
                     }} gutterBottom>
@@ -45,7 +42,7 @@ export default function Revolution(props) {
             </Grid>
             <Grid item container direction="row" alignItems="center" className={classes.rowContainer}>
                 <Grid item lg>
-                    <img src={vision} alt="vision" style={{ maxWidth: matchesSm ? "300px" : "40em", marginRight: "5em", }} />
+                    <img src="/assets/vision.svg" alt="vision" style={{ maxWidth: matchesSm ? "300px" : "40em", marginRight: "5em", }} />
                 </Grid>
                 <Grid item container direction="column" lg sx={{
                     maxWidth: "40em"
@@ -132,7 +129,7 @@ export default function Revolution(props) {
                     </Grid>
                 </Grid>
                 <Grid item lg sx={{ alignSelf: "center" }}>
-                    <img src={consultation} alt="handshake" />
+                    <img src="/assets/consultation.svg" alt="handshake" />
                 </Grid>
             </Grid>
 
@@ -153,7 +150,7 @@ export default function Revolution(props) {
                     </Grid>
                 </Grid>
                 <Grid item lg sx={{ alignSelf: "center" }}>
-                    <img src={mockup} alt="mockup" />
+                    <img src="/assets/mockupIcon.svg" alt="mockup" />
                 </Grid>
             </Grid>
 
@@ -173,7 +170,7 @@ export default function Revolution(props) {
                     </Grid>
                 </Grid>
                 <Grid item lg sx={{ alignSelf: "center" }}>
-                    <img src={review} alt="review" />
+                    <img src="/assets/reviewIcon.svg" alt="review" />
                 </Grid>
             </Grid>
 
@@ -193,7 +190,7 @@ export default function Revolution(props) {
                     </Grid>
                 </Grid>
                 <Grid item lg sx={{ alignSelf: "center" }}>
-                    <img src={design} alt="design" />
+                    <img src="/assets/designIcon.svg" alt="design" />
                 </Grid>
             </Grid>
 
@@ -213,7 +210,7 @@ export default function Revolution(props) {
                     </Grid>
                 </Grid>
                 <Grid item lg sx={{ alignSelf: "center" }}>
-                    <img src={review} alt="review" />
+                    <img src="/assets/reviewIcon.svg" alt="review" />
                 </Grid>
             </Grid>
 
@@ -233,7 +230,7 @@ export default function Revolution(props) {
                     </Grid>
                 </Grid>
                 <Grid item lg sx={{ alignSelf: "center" }}>
-                    <img src={build} alt="build" />
+                    <img src="/assets/buildIcon.svg" alt="build" />
                 </Grid>
             </Grid>
 
@@ -254,7 +251,7 @@ export default function Revolution(props) {
                     </Grid>
                 </Grid>
                 <Grid item lg sx={{ alignSelf: "center" }}>
-                    <img src={launch} alt="rocket" />
+                    <img src="/assets/launchIcon.svg" alt="rocket" />
                 </Grid>
             </Grid>
 
@@ -275,7 +272,7 @@ export default function Revolution(props) {
                     </Grid>
                 </Grid>
                 <Grid item lg sx={{ alignSelf: "center" }}>
-                    <img src={maintain} alt="maintain" />
+                    <img src="/assets/maintainIcon.svg" alt="maintain" />
                 </Grid>
             </Grid>
 
@@ -296,7 +293,7 @@ export default function Revolution(props) {
                     </Grid>
                 </Grid>
                 <Grid item lg sx={{ alignSelf: "center" }}>
-                    <img src={iterate} alt="iterate" />
+                    <img src="/assets/iterateIcon.svg" alt="iterate" />
                 </Grid>
             </Grid>
         </Grid>

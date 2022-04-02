@@ -1,16 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from '../src/Link';
 import Lottie from "lottie-react";
 import { makeStyles, useTheme } from '@mui/styles';
 import { Grid, Button, Typography, IconButton, Hidden } from '@mui/material';
 import { useMediaQuery } from '@mui/material';
-import CallToAction from './ui/CallToAction';
-import backArrow from '../assets/backArrow.svg';
-import forwardArrow from '../assets/forwardArrow.svg';
-import integrationAnimation from '../animations/integrationAnimation/data.json';
-import swiss from '../assets/swissKnife.svg';
-import access from '../assets/extendAccess.svg';
-import engagement from '../assets/increaseEngagement.svg';
+import CallToAction from '../src/ui/CallToAction';
+import integrationAnimation from '../src/animations/integrationAnimation/data.json';
+import Head from 'next/head';
+
+
 
 const useStyles = makeStyles(theme => ({
     heading: {
@@ -38,6 +36,14 @@ export default function MobileApps(props) {
 
     return (
         <>
+            <Head>
+                <title key="title">iOS/Android App Design and Development | Arc Development</title>
+                <meta name="description" key="description" content="We provide the best services in the world. Get a free online estimate now!" />
+                <meta key="og:title" property="og:title" content="Bringing West Coasts Technology to the Midwest | Mobile apps" />
+                <meta key="og:url" property="og:url" content="arc.com/mobileApps" />
+                <link rel="canonical" key="canonical" href="https://www.arc.com/mobileApps" />
+
+            </Head>
             <Grid container direction="column" className={classes.mainContainer}>
                 <Grid item container direction="row"
                     justifyContent={matchesMd ? "center" : undefined}>
@@ -47,14 +53,14 @@ export default function MobileApps(props) {
                                 marginRight: "1em",
                                 marginLeft: "-3.5em"
                             }}>
-                            <IconButton component={Link} to="/customsoftware" onClick={() => props.setSelectedIndex(1)}>
-                                <img src={backArrow} alt="back arrow" />
+                            <IconButton component={Link} href="/customsoftware" onClick={() => props.setSelectedIndex(1)}>
+                                <img src='/assets/backArrow.svg' alt="back arrow" />
                             </IconButton>
                         </Grid>
                     </Hidden>
                     <Grid item container direction="column" className={classes.heading}>
                         <Grid item>
-                            <Typography variant="h2" align={matchesMd ? "center" : undefined}>
+                            <Typography variant="h1" align={matchesMd ? "center" : undefined}>
                                 iOS/Android apps development
                             </Typography>
                         </Grid>
@@ -75,8 +81,8 @@ export default function MobileApps(props) {
                     </Grid>
                     <Hidden mdDown>
                         <Grid item className={classes.arrowContainer}>
-                            <IconButton component={Link} to="/websites" onClick={() => props.setSelectedIndex(3)}>
-                                <img src={forwardArrow} alt="forward arrow" />
+                            <IconButton component={Link} href="/websites" onClick={() => props.setSelectedIndex(3)}>
+                                <img src='/assets/forwardArrow.svg' alt="forward arrow" />
                             </IconButton>
                         </Grid>
                     </Hidden>
@@ -102,12 +108,13 @@ export default function MobileApps(props) {
                         </Grid>
                     </Grid>
                     <Grid item md>
-                        <Lottie>
-                            <Lottie animationData={integrationAnimation} height={"100%"} widht={"100%"}
-                                sx={{
-                                    maxWidth: "20em",
-                                }} />
-                        </Lottie>
+
+                        <Lottie animationData={integrationAnimation} height={"100%"} widht={"100%"}
+                            sx={{
+                                maxWidth: matchesMd ? "15em" : "20em",
+                                height: matchesMd ? "20em" : undefined
+                            }} />
+
                     </Grid>
                     <Grid item container direction="column" md>
                         <Grid item>
@@ -127,7 +134,8 @@ export default function MobileApps(props) {
                 </Grid>
                 <Grid item container direction={matchesMd ? "column" : "row"} className={classes.itemContainer}
                     sx={{
-                        marginBottom: "15em"
+                        marginBottom: "15em",
+                        display: matchesMd ? "grid" : undefined
                     }}>
                     <Grid item container direction="column" md alignItems="center"
                         sx={{
@@ -140,7 +148,7 @@ export default function MobileApps(props) {
                             </Typography>
                         </Grid>
                         <Grid item>
-                            <img src={swiss} alt="swiss army knife" />
+                            <img src='/assets/swissKnife.svg' alt="swiss army knife" />
                         </Grid>
                     </Grid>
                     <Grid item container direction="column" md alignItems="center">
@@ -150,7 +158,7 @@ export default function MobileApps(props) {
                             </Typography>
                         </Grid>
                         <Grid item>
-                            <img src={access} alt="swiss army knife" sx={{ maxWidth: "28em" }} />
+                            <img src='/assets/extendAccess.svg' alt="swiss army knife" sx={{ maxWidth: "28em" }} />
                         </Grid>
                     </Grid>
                     <Grid item container direction="column" md alignItems="center"
@@ -164,7 +172,7 @@ export default function MobileApps(props) {
                             </Typography>
                         </Grid>
                         <Grid item>
-                            <img src={engagement} alt="swiss army knife" />
+                            <img src='/assets/increaseEngagement.svg' alt="swiss army knife" />
                         </Grid>
                     </Grid>
                 </Grid>

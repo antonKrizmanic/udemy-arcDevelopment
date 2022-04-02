@@ -1,9 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from '../Link';
 import { Grid, Button, Typography } from '@mui/material';
 import { makeStyles, useTheme } from '@mui/styles';
 import ButtonArrow from './ButtonArrow';
-import background from '../../assets/background.jpg';
 import { useMediaQuery } from '@mui/material';
 
 const useStyles = makeStyles(theme => ({
@@ -14,7 +13,7 @@ const useStyles = makeStyles(theme => ({
         padding: 5
     },
     background: {
-        backgroundImage: `url(${background})`,
+        backgroundImage: `url("/assets/background.jpg")`,
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
@@ -60,7 +59,7 @@ export default function CallToAction(props) {
                 <Grid
                     container direction="column">
                     <Grid item>
-                        <Typography variant="h2">
+                        <Typography variant="h1">
                             Simple Software <br /> Revolutionary Results
                         </Typography>
                         <Typography variant="subtitle2"
@@ -77,7 +76,7 @@ export default function CallToAction(props) {
                             <Button
                                 component={Link}
                                 onClick={() => props.setValue(2)}
-                                to="/revolution"
+                                href="/revolution"
                                 variant="outlined"
                                 className={classes.learnButton}                                >
                                 <span style={{ marginRight: 5 }}>Learn more</span>

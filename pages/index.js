@@ -2,16 +2,13 @@ import React from 'react';
 import Lottie from "lottie-react";
 import { makeStyles, useTheme } from '@mui/styles';
 import { Grid, Button, Typography, Card, CardContent } from '@mui/material';
-import ButtonArrow from './ui/ButtonArrow';
-import animationData from '../animations/landinganimation/data';
-import customSoftwareIcon from '../assets/CustomSoftwareIcon.svg'
-import mobileIcon from '../assets/mobileIcon.svg'
-import websiteIcon from '../assets/websiteIcon.svg'
+import ButtonArrow from '../src/ui/ButtonArrow';
+import animationData from '../src/animations/landinganimation/data';
+import Link from '../src/Link';
 import { useMediaQuery } from '@mui/material';
-import revolutionBackground from '../assets/repeatingBackground.svg';
-import infoBackground from '../assets/infoBackground.svg';
-import CallToAction from './ui/CallToAction';
-import { Link } from 'react-router-dom';
+import CallToAction from '../src/ui/CallToAction';
+import Head from 'next/head';
+
 
 const useStyles = makeStyles(theme => ({
     animation: {
@@ -70,7 +67,7 @@ const useStyles = makeStyles(theme => ({
         marginTop: "12em",
     },
     reacolutionBackground: {
-        backgroundImage: `url(${revolutionBackground})`,
+        backgroundImage: `url("/assets/repeatingBackground.svg")`,
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
@@ -84,7 +81,7 @@ const useStyles = makeStyles(theme => ({
         padding: "10em",
     },
     infoBackground: {
-        backgroundImage: `url(${infoBackground})`,
+        backgroundImage: `url("/assets/infoBackground.svg")`,
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
@@ -101,6 +98,14 @@ export default function LendingPage(props) {
     return (
         <>
             <Grid container direction="column" className={classes.mainContainer}>
+                <Head>
+                    <title key="title">Custom Software, Mobile Apps and websites | Arc Development</title>
+                    <meta name="description" key="description" content="We provide the best services in the world. Get a free online estimate now!" />
+                    <meta key="og:title" property="og:title" content="Bringing West Coasts Technology to the Midwest | Lending page" />
+                    <meta key="og:url" property="og:url" content="arc.com" />
+                    <link rel="canonical" key="canonical" href="https://www.arc.com" />
+
+                </Head>
                 <Grid item> {/*-----Hero Block-----*/}
                     <Grid container justifyContent="flex-end" alignItems="center">
                         <Grid item sm className={classes.heroTextContainer}>
@@ -114,7 +119,7 @@ export default function LendingPage(props) {
                                 <Grid item>
                                     <Button
                                         component={Link}
-                                        to="/estimate"
+                                        href="/freeEstimate"
                                         onClick={() => props.setValue(5)}
                                         className={classes.estimateButton}
                                         variant="contained" color="primary">Free estimate</Button>
@@ -122,7 +127,7 @@ export default function LendingPage(props) {
                                 <Grid item>
                                     <Button component={Link}
                                         onClick={() => props.setValue(2)}
-                                        to="/revolution" className={classes.learButtonHero} variant="outlined" color="primary">
+                                        href="/revolution" className={classes.learButtonHero} variant="outlined" color="primary">
                                         <span style={{ marginRight: 10 }}>Lear more</span>
                                         <ButtonArrow
                                             width={15}
@@ -156,7 +161,7 @@ export default function LendingPage(props) {
                             </Typography>
                             <Button component={Link}
                                 onClick={() => { props.setValue(1); props.setSelectedIndex(1); }}
-                                to="/customsoftware" variant="outlined" className={classes.learnButton}>
+                                href="/customsoftware" variant="outlined" className={classes.learnButton}>
                                 <span style={{ marginRight: 10 }}>Lear more</span>
                                 <ButtonArrow
                                     width={10}
@@ -166,7 +171,7 @@ export default function LendingPage(props) {
                             </Button>
                         </Grid>
                         <Grid item>
-                            <img className={classes.icon} src={customSoftwareIcon} alt="custom software icon" />
+                            <img className={classes.icon} src="/assets/customSoftwareIcon.svg" alt="custom software icon" />
                         </Grid>
                     </Grid>
                 </Grid>
@@ -188,7 +193,7 @@ export default function LendingPage(props) {
                             </Typography>
                             <Button component={Link}
                                 onClick={() => { props.setValue(1); props.setSelectedIndex(2); }}
-                                to="/mobileapps" variant="outlined" className={classes.learnButton}>
+                                href="/mobileapps" variant="outlined" className={classes.learnButton}>
                                 <span style={{ marginRight: 10 }}>Lear more</span>
                                 <ButtonArrow
                                     width={10}
@@ -200,7 +205,7 @@ export default function LendingPage(props) {
                         <Grid item sx={{
                             marginRight: matchesSm ? "0" : "5em"
                         }}>
-                            <img className={classes.icon} src={mobileIcon} alt="mobilephone icon" />
+                            <img className={classes.icon} src="/assets/mobileIcon.svg" alt="mobilephone icon" />
                         </Grid>
                     </Grid>
                 </Grid>
@@ -223,7 +228,7 @@ export default function LendingPage(props) {
                             </Typography>
                             <Button component={Link}
                                 onClick={() => { props.setValue(1); props.setSelectedIndex(3); }}
-                                to="/websites" variant="outlined" className={classes.learnButton}>
+                                href="/websites" variant="outlined" className={classes.learnButton}>
                                 <span style={{ marginRight: 10 }}>Lear more</span>
                                 <ButtonArrow
                                     width={10}
@@ -233,7 +238,7 @@ export default function LendingPage(props) {
                             </Button>
                         </Grid>
                         <Grid item>
-                            <img className={classes.icon} src={websiteIcon} alt="website icon" />
+                            <img className={classes.icon} src="/assets/websiteIcon.svg" alt="website icon" />
                         </Grid>
                     </Grid>
                 </Grid>
@@ -263,7 +268,7 @@ export default function LendingPage(props) {
                                         </Typography>
                                         <Button component={Link}
                                             onClick={() => props.setValue(2)}
-                                            to="/revolution" className={classes.learButtonHero} variant="outlined" color="primary">
+                                            href="/revolution" className={classes.learButtonHero} variant="outlined" color="primary">
                                             <span style={{ marginRight: 10 }}>Lear more</span>
                                             <ButtonArrow
                                                 width={15}
@@ -299,7 +304,7 @@ export default function LendingPage(props) {
                                 }} >
                                 <Grid container direction="column">
                                     <Typography
-                                        variant="h2"
+                                        variant="h1"
                                         sx={{
                                             color: "white"
                                         }}>
@@ -312,7 +317,7 @@ export default function LendingPage(props) {
                                         <Button
                                             component={Link}
                                             onClick={() => props.setValue(3)}
-                                            to="/about"
+                                            href="/about"
                                             variant="outlined"
                                             className={classes.learnButton}
                                             sx={{
@@ -338,7 +343,7 @@ export default function LendingPage(props) {
                                 }} >
                                 <Grid container direction="column">
                                     <Typography
-                                        variant="h2"
+                                        variant="h1"
                                         sx={{
                                             color: "white"
                                         }}>
@@ -351,7 +356,7 @@ export default function LendingPage(props) {
                                         <Button
                                             component={Link}
                                             onClick={() => props.setValue(4)}
-                                            to="/contact"
+                                            href="/contact"
                                             variant="outlined"
                                             className={classes.learnButton}
                                             sx={{

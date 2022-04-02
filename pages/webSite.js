@@ -1,16 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Lottie from "lottie-react";
+import Link from '../src/Link';
 import { makeStyles, useTheme } from '@mui/styles';
 import { Grid, Button, Typography, IconButton, Hidden } from '@mui/material';
 import { useMediaQuery } from '@mui/material';
-import CallToAction from './ui/CallToAction';
-import backArrow from '../assets/backArrow.svg';
-import forwardArrow from '../assets/forwardArrow.svg';
-import analytics from '../assets/analytics.svg';
-import seo from '../assets/seo.svg';
-import outreach from '../assets/outreach.svg';
-import ecommerce from '../assets/ecommerce.svg';
+import CallToAction from '../src/ui/CallToAction';
+import Head from 'next/head';
 
 const useStyles = makeStyles(theme => ({
     heading: {
@@ -41,6 +35,13 @@ export default function WebSite(props) {
 
     return (
         <>
+            <Head>
+                <title key="title">Stunning Custom Website Design | Arc Development</title>
+                <meta name="description" key="description" content="We provide the best services in the world. Get a free online estimate now!" />
+                <meta key="og:title" property="og:title" content="Bringing West Coasts Technology to the Midwest | Websites" />
+                <meta key="og:url" property="og:url" content="arc.com/websites" />
+                <link rel="canonical" key="canonical" href="https://www.arc.com/websites" />
+            </Head>
             <Grid container direction="column" className={classes.mainContainer}>
                 <Grid item container direction="row"
                     justifyContent={matchesMd ? "center" : undefined}>
@@ -50,14 +51,14 @@ export default function WebSite(props) {
                                 marginRight: "1em",
                                 marginLeft: "-3.5em"
                             }}>
-                            <IconButton component={Link} to="/mobileapps" onClick={() => props.setSelectedIndex(2)}>
-                                <img src={backArrow} alt="back arrow" />
+                            <IconButton component={Link} href="/mobileapps" onClick={() => props.setSelectedIndex(2)}>
+                                <img src="/assets/backArrow.svg" alt="back arrow" />
                             </IconButton>
                         </Grid>
                     </Hidden>
                     <Grid item container direction="column" className={classes.heading}>
                         <Grid item>
-                            <Typography variant="h2" align={matchesMd ? "center" : undefined}>
+                            <Typography variant="h1" align={matchesMd ? "center" : undefined}>
                                 Web site apps development
                             </Typography>
                         </Grid>
@@ -78,8 +79,8 @@ export default function WebSite(props) {
                     </Grid>
                     <Hidden mdDown>
                         <Grid item className={classes.arrowContainer}>
-                            <IconButton component={Link} to="/services" onClick={() => props.setSelectedIndex(0)}>
-                                <img src={forwardArrow} alt="forward arrow" />
+                            <IconButton component={Link} href="/services" onClick={() => props.setSelectedIndex(0)}>
+                                <img src="/assets/forwardArrow.svg" alt="forward arrow" />
                             </IconButton>
                         </Grid>
                     </Hidden>
@@ -97,7 +98,7 @@ export default function WebSite(props) {
                                 </Typography>
                             </Grid>
                             <Grid item>
-                                <img src={analytics} alt="analytics" style={{ marginLeft: "-2.75em" }} />
+                                <img src="/assets/analytics.svg" alt="analytics" style={{ marginLeft: "-2.75em" }} />
                             </Grid>
                         </Grid>
                     </Grid>
@@ -122,7 +123,7 @@ export default function WebSite(props) {
                                 </Typography>
                             </Grid>
                             <Grid item>
-                                <img src={ecommerce} alt="ecommerce" />
+                                <img src="/assets/ecommerce.svg" alt="ecommerce" />
                             </Grid>
                         </Grid>
                     </Grid>
@@ -146,7 +147,7 @@ export default function WebSite(props) {
                                 </Typography>
                             </Grid>
                             <Grid item>
-                                <img src={outreach} alt="outreach" />
+                                <img src="/assets/outreach.svg" alt="outreach" />
                             </Grid>
                         </Grid>
                     </Grid>
@@ -171,7 +172,7 @@ export default function WebSite(props) {
                                 </Typography>
                             </Grid>
                             <Grid item>
-                                <img src={seo} alt="seo" />
+                                <img src="/assets/seo.svg" alt="seo" />
                             </Grid>
                         </Grid>
                     </Grid>

@@ -1,10 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from '../Link';
 import { makeStyles } from '@mui/styles';
-import footerAdornment from '../../assets/FooterAdornment.svg';
-import facebook from '../../assets/facebook.svg';
-import twitter from '../../assets/twitter.svg';
-import instagram from '../../assets/instagram.svg';
 
 import { Grid, Hidden } from '@mui/material';
 
@@ -65,7 +61,7 @@ export default function Footer(props) {
                 <Grid container justifyContent="center" className={classes.mainContainer}>
                     <Grid item className={classes.gridItem}>
                         <Grid container direction="column" spacing={2}>
-                            <Grid item className={classes.link} component={Link} to="/"
+                            <Grid item className={classes.link} component={Link} href="/"
                                 onClick={() => props.setValue(0)}>
                                 Home
                             </Grid>
@@ -73,19 +69,19 @@ export default function Footer(props) {
                     </Grid>
                     <Grid item className={classes.gridItem}>
                         <Grid container direction="column" spacing={2}>
-                            <Grid item className={classes.link} component={Link} to="/services"
+                            <Grid item className={classes.link} component={Link} href="/services"
                                 onClick={() => { props.setValue(1); props.setSelectedIndex(0); }}>
                                 Services
                             </Grid>
-                            <Grid item className={classes.link} component={Link} to="/customsoftware"
+                            <Grid item className={classes.link} component={Link} href="/customsoftware"
                                 onClick={() => { props.setValue(1); props.setSelectedIndex(1); }}>
                                 Custom Software development
                             </Grid>
-                            <Grid item className={classes.link} component={Link} to="/mobileapps"
+                            <Grid item className={classes.link} component={Link} href="/mobileapps"
                                 onClick={() => { props.setValue(1); props.setSelectedIndex(2); }}>
                                 iOS/Android apps development
                             </Grid>
-                            <Grid item className={classes.link} component={Link} to="/websites"
+                            <Grid item className={classes.link} component={Link} href="/websites"
                                 onClick={() => { props.setValue(1); props.setSelectedIndex(3); }}>
                                 Web sites development
                             </Grid>
@@ -93,19 +89,19 @@ export default function Footer(props) {
                     </Grid>
                     <Grid item className={classes.gridItem}>
                         <Grid container direction="column" spacing={2}>
-                            <Grid item className={classes.link} component={Link} to="/revolution"
+                            <Grid item className={classes.link} component={Link} href="/revolution"
                                 onClick={() => props.setValue(2)}>
                                 The Revolution
                             </Grid>
-                            <Grid item className={classes.link} component={Link} to="/revolution"
+                            <Grid item className={classes.link} component={Link} href="/revolution"
                                 onClick={() => props.setValue(2)}>
                                 Vision
                             </Grid>
-                            <Grid item className={classes.link} component={Link} to="/revolution"
+                            <Grid item className={classes.link} component={Link} href="/revolution"
                                 onClick={() => props.setValue(2)}>
                                 Technology
                             </Grid>
-                            <Grid item className={classes.link} component={Link} to="/revolution"
+                            <Grid item className={classes.link} component={Link} href="/revolution"
                                 onClick={() => props.setValue(2)}>
                                 Process
                             </Grid>
@@ -113,15 +109,15 @@ export default function Footer(props) {
                     </Grid>
                     <Grid item className={classes.gridItem}>
                         <Grid container direction="column" spacing={2}>
-                            <Grid item className={classes.link} component={Link} to="/about"
+                            <Grid item className={classes.link} component={Link} href="/about"
                                 onClick={() => props.setValue(3)}>
                                 About us
                             </Grid>
-                            <Grid item className={classes.link} component={Link} to="/about"
+                            <Grid item className={classes.link} component={Link} href="/about"
                                 onClick={() => props.setValue(3)}>
                                 History
                             </Grid>
-                            <Grid item className={classes.link} component={Link} to="/about"
+                            <Grid item className={classes.link} component={Link} href="/about"
                                 onClick={() => props.setValue(3)}>
                                 Team
                             </Grid>
@@ -129,7 +125,7 @@ export default function Footer(props) {
                     </Grid>
                     <Grid item className={classes.gridItem}>
                         <Grid container direction="column" spacing={2}>
-                            <Grid item className={classes.link} component={Link} to="/contact"
+                            <Grid item className={classes.link} component={Link} href="/contact"
                                 onClick={() => props.setValue(4)}>
                                 Contact us
                             </Grid>
@@ -137,16 +133,16 @@ export default function Footer(props) {
                     </Grid>
                 </Grid>
             </Hidden>
-            <img alt="black decoration slash" src={footerAdornment} className={classes.adornment} />
+            <img alt="black decoration slash" src="/assets/FooterAdornment.svg" className={classes.adornment} />
             <Grid container justifyContent="flex-end" spacing={2} className={classes.socialContainer}>
                 <Grid item component={"a"} href="https://www.facebook.com" rel="noopener noreferrer" target="_blank">
-                    <img alt="facebook logo" src={facebook} className={classes.icon} />
+                    <img alt="facebook logo" src="/assets/facebook.svg" className={classes.icon} />
                 </Grid>
                 <Grid item component={"a"} href="https://www.twitter.com" rel="noopener noreferrer" target="_blank">
-                    <img alt="twitter logo" src={twitter} className={classes.icon} />
+                    <img alt="twitter logo" src="/assets/twitter.svg" className={classes.icon} />
                 </Grid>
                 <Grid item component={"a"} href="https://www.instagram.com" rel="noopener noreferrer" target="_blank">
-                    <img alt="instagram logo" src={instagram} className={classes.icon} />
+                    <img alt="instagram logo" src="/assets/instagram.svg" className={classes.icon} />
                 </Grid>
             </Grid>
         </footer>

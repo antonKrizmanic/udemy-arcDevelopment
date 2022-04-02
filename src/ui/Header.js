@@ -9,8 +9,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Button from '@mui/material/Button';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
-import logo from '../../assets/logo.svg';
-import { Link } from 'react-router-dom';
+import Link from '../Link';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import List from '@mui/material/List';
@@ -114,9 +113,9 @@ export default function Header(props) {
 
     const menuOptions = [
         { name: "Services", link: "/services", activeIndex: 1, selectedIndex: 0 },
-        { name: "Custom Software", link: "/customsoftware", activeIndex: 1, selectedIndex: 1 },
-        { name: "iOS/Android Apps", link: "/mobileapps", activeIndex: 1, selectedIndex: 2 },
-        { name: "Web Sites", link: "/websites", activeIndex: 1, selectedIndex: 3 },
+        { name: "Custom Software", link: "/customSoftware", activeIndex: 1, selectedIndex: 1 },
+        { name: "iOS/Android Apps", link: "/mobileApps", activeIndex: 1, selectedIndex: 2 },
+        { name: "Web Sites", link: "/webSites", activeIndex: 1, selectedIndex: 3 },
     ];
 
     const routes = [
@@ -138,8 +137,10 @@ export default function Header(props) {
                         }
                     }
                     break;
-                case '/estimate':
-                    props.setValue(5);
+                case '/freeEstimate':
+                    if (props.value !== 5) {
+                        props.setValue(5);
+                    }
                     break;
                 default:
                     break;
@@ -166,7 +167,7 @@ export default function Header(props) {
                             marginLeft: '25px'
                         }}
                         component={Link}
-                        to={route.link}
+                        href={route.link}
                         label={route.name}
                         aria-owns={route.ariaOwns}
                         aria-haspopup={route.ariaHasPopup}
@@ -177,7 +178,7 @@ export default function Header(props) {
                 variant="contained"
                 color="secondary"
                 component={Link}
-                to="/estimate"
+                href="/freeEstimate"
                 onClick={() => props.setValue(5)}
                 sx={{
                     ...theme.typography.estimate,
@@ -209,7 +210,7 @@ export default function Header(props) {
                             handleClose();
                         }}
                         component={Link}
-                        to={option.link}>
+                        href={option.link}>
                         {option.name}
                     </MenuItem>
                 ))}
@@ -237,7 +238,7 @@ export default function Header(props) {
                                 divider
                                 button
                                 component={Link}
-                                to={route.link}
+                                href={route.link}
                                 onClick={() => { setOpenDrawer(false); props.setValue(route.activeIndex); }}
                                 selected={props.value === route.activeIndex}>
                                 <ListItemText disableTypography>{route.name}</ListItemText>
@@ -247,7 +248,7 @@ export default function Header(props) {
                             sx={{
                                 backgroundColor: theme.palette.secondary.main
                             }}
-                            divider button component={Link} to="/estimates"
+                            divider button component={Link} href="/freeEstimate"
                             onClick={() => { setOpenDrawer(false); props.setValue(5) }}
                             selected={props.value === 5}>
                             <ListItemText disableTypography>Free estimate</ListItemText>
@@ -283,7 +284,7 @@ export default function Header(props) {
                             onClick={() => props.setValue(0)}
                             component={Link}
                             disableRipple
-                            to="/"
+                            href="/"
                             sx={{
                                 p: 0,
                             }}>
@@ -292,7 +293,23 @@ export default function Header(props) {
                                     height: '7rem',
                                     width: '388px',
                                 }}>
-                                <img src={logo} alt="logo" />
+                                <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 139"><style>{`.st0{fill:none}.st1{fill:#fff}.st2{font - family:Raleway; font-weight: 300; text-transform:none; text-decoration:none;}.st6{fill:none;stroke:#000;stroke-width:3;stroke-miterlimit:10}`}</style>
+                                    <path d="M448.07-1l-9.62 17.24-8.36 14.96L369.93 139H-1V-1z" />
+                                    <path className="st0" d="M-1 139h479.92v.01H-1z" />
+                                    <text transform="translate(261.994 65.233)" className="st1 st2" fontSize="57">Arc</text>
+                                    <text transform="translate(17.692 112.015)" className="st1 st2" fontSize="54">Development</text>
+                                    <path className="st0" d="M382.44 116.43l47.65-85.23 8.36-14.96M369.83 139l-.01.01L362 153" />
+                                    <path d="M438.76 15.76l-56.42 100.91c-12.52-10.83-20.45-26.82-20.45-44.67 0-32.58 26.42-59 59-59 6.23 0 12.24.97 17.87 2.76z" fill="#0b72b9" />
+                                    <path d="M479.89 72c0 32.58-26.42 59-59 59-14.73 0-28.21-5.4-38.55-14.33l56.42-100.91c23.85 7.57 41.13 29.89 41.13 56.24z" />
+                                    <g id="Group_186" transform="translate(30.153 11.413)">
+                                        <g id="Group_185"><g id="Words">
+                                            <path id="Path_59" className="st1" d="M405.05 14.4l-.09 80.38-7.67-.01.06-52.25-29.4 52.21-7.94-.01 45.04-80.32z" />
+                                        </g>
+                                        </g>
+                                    </g>
+                                    <path className="st0" d="M457-17l-8.93 16-9.62 17.24-8.36 14.96L369.93 139l-.01.01L361 155" />
+                                </svg>
+
                             </Box>
                         </Button>
                         {

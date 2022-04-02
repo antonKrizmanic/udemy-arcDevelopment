@@ -1,12 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from '../src/Link';
 import { makeStyles, useTheme } from '@mui/styles';
 import { Grid, Button, Typography } from '@mui/material';
-import ButtonArrow from './ui/ButtonArrow';
+import ButtonArrow from '../src/ui/ButtonArrow';
 import { useMediaQuery } from '@mui/material';
-import customSoftwareIcon from '../assets/CustomSoftwareIcon.svg'
-import mobileIcon from '../assets/mobileIcon.svg'
-import websiteIcon from '../assets/websiteIcon.svg'
+import Head from 'next/head';
 
 const useStyles = makeStyles(theme => ({
     learnButton: {
@@ -37,11 +35,18 @@ export default function Services(props) {
 
     return (
         <Grid container direction="column">
+            <Head>
+                <title key="title">Tops custom software development services | Arc Development</title>
+                <meta name="description" key="description" content="We provide the best services in the world. Get a free online estimate now!" />
+                <meta key="og:title" property="og:title" content="Bringing West Coasts Technology to the Midwest | Services" />
+                <meta key="og:url" property="og:url" content="arc.com/services" />
+                <link rel="canonical" key="canonical" href="https://www.arc.com/services" />
+            </Head>
             <Grid item sx={{
                 marginLeft: matchesSm ? 0 : "5em",
                 marginTop: matchesSm ? "1em" : "2em"
             }}>
-                <Typography variant="h2" gutterBottom
+                <Typography variant="h1" gutterBottom
                     align={matchesSm ? "center" : undefined}
                 >Services</Typography>
             </Grid>
@@ -64,7 +69,7 @@ export default function Services(props) {
                         </Typography>
                         <Button component={Link}
                             onClick={() => { props.setValue(1); props.setSelectedIndex(2); }}
-                            to="/mobileapps" variant="outlined" className={classes.learnButton}>
+                            href="/mobileapps" variant="outlined" className={classes.learnButton}>
                             <span style={{ marginRight: 10 }}>Lear more</span>
                             <ButtonArrow
                                 width={10}
@@ -76,7 +81,7 @@ export default function Services(props) {
                     <Grid item sx={{
                         marginRight: matchesSm ? "0" : "5em"
                     }}>
-                        <img className={classes.icon} src={mobileIcon} alt="mobilephone icon" width="250em" />
+                        <img className={classes.icon} src="/assets/mobileIcon.svg" alt="mobilephone icon" width="250em" />
                     </Grid>
                 </Grid>
             </Grid>
@@ -98,7 +103,7 @@ export default function Services(props) {
                         </Typography>
                         <Button component={Link}
                             onClick={() => { props.setValue(1); props.setSelectedIndex(1); }}
-                            to="/customsoftware" variant="outlined" className={classes.learnButton}>
+                            href="/customsoftware" variant="outlined" className={classes.learnButton}>
                             <span style={{ marginRight: 10 }}>Lear more</span>
                             <ButtonArrow
                                 width={10}
@@ -108,7 +113,7 @@ export default function Services(props) {
                         </Button>
                     </Grid>
                     <Grid item>
-                        <img className={classes.icon} src={customSoftwareIcon} alt="custom software icon" />
+                        <img className={classes.icon} src="/assets/CustomSoftwareIcon.svg" alt="custom software icon" />
                     </Grid>
                 </Grid>
             </Grid>
@@ -131,7 +136,7 @@ export default function Services(props) {
                         </Typography>
                         <Button component={Link}
                             onClick={() => { props.setValue(1); props.setSelectedIndex(3); }}
-                            to="/websites" variant="outlined" className={classes.learnButton}>
+                            href="/websites" variant="outlined" className={classes.learnButton}>
                             <span style={{ marginRight: 10 }}>Lear more</span>
                             <ButtonArrow
                                 width={10}
@@ -143,7 +148,7 @@ export default function Services(props) {
                     <Grid item sx={{
                         marginRight: matchesSm ? "0" : "5em",
                     }}>
-                        <img className={classes.icon} src={websiteIcon} alt="website icon" width="250em" />
+                        <img className={classes.icon} src="/assets/websiteIcon.svg" alt="website icon" width="250em" />
                     </Grid>
                 </Grid>
             </Grid>

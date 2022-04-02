@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
+import Head from 'next/head';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import Link from '../src/Link';
 import { makeStyles, useTheme } from '@mui/styles';
 import { Alert, Grid, Button, Typography, Dialog, DialogContent, TextField, CircularProgress, Snackbar } from '@mui/material';
 import { useMediaQuery } from '@mui/material';
-import background from '../assets/background.jpg';
-import phoneIcon from '../assets/phone.svg';
-import emailIcon from '../assets/email.svg';
-import airplane from '../assets/send.svg';
-import ButtonArrow from './ui/ButtonArrow';
-
+import ButtonArrow from '../src/ui/ButtonArrow';
 
 const useStyles = makeStyles(theme => ({
     background: {
-        backgroundImage: `url(${background})`,
+        backgroundImage: `url("/assets/background.jpg")`,
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
@@ -145,7 +141,7 @@ export default function Contact(props) {
     const buttonContents = (
         <>
             Send Message
-            <img src={airplane} alt="airplane"
+            <img src="/assets/send.svg" alt="airplane"
                 style={{
                     marginLeft: "1em"
                 }} />
@@ -154,6 +150,13 @@ export default function Contact(props) {
 
     return (
         <Grid container direction="row">
+            <Head>
+                <title key="title">Contact Us | Arc Development</title>
+                <meta name="description" key="description" content="We provide the best services in the world. Get a free online estimate now!" />
+                <meta key="og:title" property="og:title" content="Bringing West Coasts Technology to the Midwest | Countact Us" />
+                <meta key="og:url" property="og:url" content="arc.com/contact" />
+                <link rel="canonical" key="canonical" href="https://www.arc.com/contact" />
+            </Head>
             <Grid
                 item
                 container
@@ -170,7 +173,7 @@ export default function Contact(props) {
                     <Grid container direction="column">
                         <Grid item>
                             <Typography
-                                variant="h2"
+                                variant="h1"
                                 align={matchesMd ? "center" : undefined}
                                 sx={{
                                     lineHeight: 1
@@ -184,7 +187,7 @@ export default function Contact(props) {
                         </Grid>
                         <Grid item container sx={{ marginTop: "2em" }}>
                             <Grid item>
-                                <img src={phoneIcon} alt="phone"
+                                <img src="/assets/phone.svg" alt="phone"
                                     style={{
                                         marginRight: "0.5em"
                                     }} />
@@ -206,7 +209,7 @@ export default function Contact(props) {
                         </Grid>
                         <Grid item container sx={{ marginBottom: "2em" }}>
                             <Grid item>
-                                <img src={emailIcon} alt="envelope"
+                                <img src="/assets/email.svg" alt="envelope"
                                     style={{
                                         marginRight: "0.5em",
                                         verticalAlign: "bottom"
@@ -414,7 +417,7 @@ export default function Contact(props) {
                     <Grid
                         container direction="column">
                         <Grid item>
-                            <Typography variant="h2" align={matchesMd ? "center" : "undefined"}>
+                            <Typography variant="h1" align={matchesMd ? "center" : "undefined"}>
                                 Simple Software <br /> Revolutionary Results
                             </Typography>
                             <Typography variant="subtitle2"
@@ -431,8 +434,8 @@ export default function Contact(props) {
                             >
                                 <Button
                                     component={Link}
+                                    href="/revolution"
                                     onClick={() => props.setValue(2)}
-                                    to="/revolution"
                                     variant="outlined"
                                     className={classes.learnButton}                                >
                                     <span style={{ marginRight: 5 }}>Learn more</span>

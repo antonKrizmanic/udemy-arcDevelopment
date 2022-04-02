@@ -1,12 +1,9 @@
 import React from 'react';
+import Head from 'next/head';
 import { makeStyles, useTheme } from '@mui/styles';
 import { Grid, Button, Typography, IconButton, Hidden, Avatar } from '@mui/material';
 import { useMediaQuery } from '@mui/material';
-import history from '../assets/history.svg';
-import profile from '../assets/founder.jpg';
-import yearbook from '../assets/yearbook.svg';
-import puppy from '../assets/puppy.svg';
-import CallToAction from './ui/CallToAction';
+import CallToAction from '../src/ui/CallToAction';
 
 const useStyles = makeStyles(theme => ({
     mission: {
@@ -43,12 +40,19 @@ export default function About(props) {
 
     return (
         <>
+            <Head>
+                <title key="title">About Us - History and Team | Arc Development</title>
+                <meta name="description" key="description" content="We provide the best services in the world. Get a free online estimate now!" />
+                <meta key="og:title" property="og:title" content="Bringing West Coasts Technology to the Midwest | About Us" />
+                <meta key="og:url" property="og:url" content="arc.com/about" />
+                <link rel="canonical" key="canonical" href="https://www.arc.com/about" />
+            </Head>
             <Grid container direction="column">
                 <Grid item className={classes.rowContainer}
                     sx={{
                         marginTop: matchesMd ? "1em" : "2em"
                     }}>
-                    <Typography variant="h2"
+                    <Typography variant="h1"
                         align={matchesMd ? "center" : undefined}>
                         About Us
                     </Typography>
@@ -94,7 +98,7 @@ export default function About(props) {
                         </Grid>
                     </Grid>
                     <Grid item lg container justifyContent="center">
-                        <img src={history} alt="history" style={{ maxHeight: matchesMd ? "200px" : "25em" }} />
+                        <img src="/assets/history.svg" alt="history" style={{ maxHeight: matchesMd ? "200px" : "25em" }} />
                     </Grid>
                 </Grid>
                 <Grid item container direction="column" alignItems="center" className={classes.rowContainer}
@@ -115,7 +119,7 @@ export default function About(props) {
                         </Typography>
                     </Grid>
                     <Grid item>
-                        <Avatar alt="founder" src={profile} className={classes.avatar} />
+                        <Avatar alt="founder" src="/assets/founder.jpg" className={classes.avatar} />
                     </Grid>
                     <Grid item container justifyContent={matchesMd ? "center" : undefined}>
                         <Hidden lgUp>
@@ -134,7 +138,7 @@ export default function About(props) {
                             }}
                             alignItems={matchesMd ? "center" : undefined}>
                             <Grid item>
-                                <img src={yearbook} alt="yearbook" style={{ maxHeight: "25em", maxWidth: matchesMd ? "300px" : undefined }} />
+                                <img src="/assets/yearbook.svg" alt="yearbook" style={{ maxHeight: "25em", maxWidth: matchesMd ? "300px" : undefined }} />
                             </Grid>
                             <Grid item>
                                 <Typography variant="caption">
@@ -154,7 +158,7 @@ export default function About(props) {
                         </Hidden>
                         <Grid item container direction="column" lg alignItems={matchesMd ? "center" : "flex-end"}>
                             <Grid item>
-                                <img src={puppy} alt="puppy" style={{ maxHeight: "25em", maxWidth: matchesMd ? "300px" : undefined }} />
+                                <img src="/assets/puppy.svg" alt="puppy" style={{ maxHeight: "25em", maxWidth: matchesMd ? "300px" : undefined }} />
                             </Grid>
                             <Grid item>
                                 <Typography variant="caption">

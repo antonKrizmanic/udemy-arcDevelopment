@@ -1,20 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from '../src/Link';
 import Lottie from "lottie-react";
 import { makeStyles, useTheme } from '@mui/styles';
 import { Grid, Button, Typography, IconButton, Hidden } from '@mui/material';
 import { useMediaQuery } from '@mui/material';
+import Head from 'next/head';
+import documentsAntimation from '../src/animations/documentsAnimation/data.js';
+import scaleAnimation from '../src/animations/scaleAnimation/data.json';
+import automationAnimation from '../src/animations/automationAnimation/data.json';
 
-import backArrow from '../assets/backArrow.svg';
-import forwardArrow from '../assets/forwardArrow.svg';
-import lightbulb from '../assets/bulb.svg';
-import cash from '../assets/cash.svg';
-import stopwatch from '../assets/stopwatch.svg';
-import documentsAntimation from '../animations/documentsAnimation/data.js';
-import scaleAnimation from '../animations/scaleAnimation/data.json';
-import roots from '../assets/root.svg';
-import automationAnimation from '../animations/automationAnimation/data.json';
-import uxAnimation from '../animations/uxAnimation/data.js';
+import uxAnimation from '../src/animations/uxAnimation/data.js';
 
 const useStyles = makeStyles(theme => ({
     heading: {
@@ -43,6 +38,14 @@ export default function CustomSoftware(props) {
 
     return (
         <Grid container direction="column" className={classes.mainContainer}>
+            <Head>
+                <title key="title">Custom software Development and Design - Free Estimate</title>
+                <meta name="description" key="description" content="We provide the best services in the world. Get a free online estimate now!" />
+                <meta key="og:title" property="og:title" content="Bringing West Coasts Technology to the Midwest | Custom Software" />
+                <meta key="og:url" property="og:url" content="arc.com/customSoftware" />
+                <link rel="canonical" key="canonical" href="https://www.arc.com/customSoftware" />
+
+            </Head>
             <Grid item container direction="row"
                 justifyContent={matchesMd ? "center" : undefined}>
                 <Hidden mdDown>
@@ -51,14 +54,14 @@ export default function CustomSoftware(props) {
                             marginRight: "1em",
                             marginLeft: "-3.5em"
                         }}>
-                        <IconButton component={Link} to="/services" onClick={() => props.setSelectedIndex(0)}>
-                            <img src={backArrow} alt="back arrow" />
+                        <IconButton component={Link} href="/services" onClick={() => props.setSelectedIndex(0)}>
+                            <img src="/assets/backArrow.svg" alt="back arrow" />
                         </IconButton>
                     </Grid>
                 </Hidden>
                 <Grid item container direction="column" className={classes.heading}>
                     <Grid item>
-                        <Typography variant="h2" align={matchesMd ? "center" : undefined}>
+                        <Typography variant="h1" align={matchesMd ? "center" : undefined}>
                             Custom Software Development
                         </Typography>
                     </Grid>
@@ -79,8 +82,8 @@ export default function CustomSoftware(props) {
                 </Grid>
                 <Hidden mdDown>
                     <Grid item className={classes.arrowContainer}>
-                        <IconButton component={Link} to="/mobileApps" onClick={() => props.setSelectedIndex(2)}>
-                            <img src={forwardArrow} alt="forward arrow" />
+                        <IconButton component={Link} href="/mobileApps" onClick={() => props.setSelectedIndex(2)}>
+                            <img src="/assets/forwardArrow.svg" alt="forward arrow" />
                         </IconButton>
                     </Grid>
                 </Hidden>
@@ -101,7 +104,7 @@ export default function CustomSoftware(props) {
                         </Typography>
                     </Grid>
                     <Grid item>
-                        <img src={lightbulb} alt="lightbulb" />
+                        <img src="/assets/bulb.svg" alt="lightbulb" />
                     </Grid>
                 </Grid>
                 <Grid item container direction="column" md
@@ -117,7 +120,7 @@ export default function CustomSoftware(props) {
                         </Typography>
                     </Grid>
                     <Grid item>
-                        <img src={stopwatch} alt="stopwatch" />
+                        <img src="/assets/stopwatch.svg" alt="stopwatch" />
                     </Grid>
                 </Grid>
                 <Grid item container direction="column" md
@@ -133,7 +136,7 @@ export default function CustomSoftware(props) {
                         </Typography>
                     </Grid>
                     <Grid item>
-                        <img src={cash} alt="cash" />
+                        <img src="/assets/cash.svg" alt="cash" />
                     </Grid>
                 </Grid>
             </Grid>
@@ -202,7 +205,7 @@ export default function CustomSoftware(props) {
                 }}>
                 <Grid item container direction="column" alignItems="center">
                     <Grid item>
-                        <img src={roots} alt="trees with roots" height="450em" widht="450em" />
+                        <img src="/assets/root.svg" alt="trees with roots" height="450em" widht="450em" />
                     </Grid>
                     <Grid item className={classes.itemContainer}>
                         <Typography variant="h4" gutterBottom align="center">
