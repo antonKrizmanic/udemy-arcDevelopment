@@ -81,7 +81,7 @@ export default function Footer(props) {
                                 onClick={() => { props.setValue(1); props.setSelectedIndex(2); }}>
                                 iOS/Android apps development
                             </Grid>
-                            <Grid item className={classes.link} component={Link} href="/websites"
+                            <Grid item className={classes.link} component={Link} href="/website"
                                 onClick={() => { props.setValue(1); props.setSelectedIndex(3); }}>
                                 Web sites development
                             </Grid>

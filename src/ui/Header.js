@@ -3,6 +3,8 @@ import { Box, Container } from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
 import { useMediaQuery } from '@mui/material';
 import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
+import Grid from '@mui/material/Grid';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Tabs from '@mui/material/Tabs';
@@ -14,13 +16,16 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import { IconButton } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import theme from './theme';
+import { ClassNames } from '@emotion/react';
 
 const newTheme = createTheme({
     components: {
@@ -112,10 +117,9 @@ export default function Header(props) {
     }
 
     const menuOptions = [
-        { name: "Services", link: "/services", activeIndex: 1, selectedIndex: 0 },
-        { name: "Custom Software", link: "/customSoftware", activeIndex: 1, selectedIndex: 1 },
-        { name: "iOS/Android Apps", link: "/mobileApps", activeIndex: 1, selectedIndex: 2 },
-        { name: "Web Sites", link: "/webSites", activeIndex: 1, selectedIndex: 3 },
+        { name: "Custom Software", link: "/customSoftware", activeIndex: 1, selectedIndex: 0 },
+        { name: "iOS/Android Apps", link: "/mobileApps", activeIndex: 1, selectedIndex: 1 },
+        { name: "Web Sites", link: "/webSites", activeIndex: 1, selectedIndex: 2 },
     ];
 
     const routes = [
@@ -126,27 +130,25 @@ export default function Header(props) {
         { name: "Contact us", link: "/contact", activeIndex: 4 },
     ]
 
+    const path = typeof window !== "undefined" ? window.location.pathname : null;
+    const activeIndex = () => {
+        const found = routes.find(({ link }) => link === path);
+        const menuFound = menuOptions.find(({ link }) => link === path);
+
+        if (menuFound) {
+            props.setValue(1);
+            props.setSelectedIndex(menuFound.selectedIndex);
+        } else if (found === undefined) {
+            props.setValue(false);
+        } else {
+            props.setValue(found.activeIndex);
+        }
+    }
+
     useEffect(() => {
-        [...menuOptions, ...routes].forEach(route => {
-            switch (window.location.pathName) {
-                case `${route.link}`:
-                    if (props.value !== route.activeIndex) {
-                        props.setValue(route.activeIndex);
-                        if (route.selectedIndex && route.selectedIndex !== props.selectedIndex) {
-                            props.setSelectedIndex(route.selectedIndex);
-                        }
-                    }
-                    break;
-                case '/freeEstimate':
-                    if (props.value !== 5) {
-                        props.setValue(5);
-                    }
-                    break;
-                default:
-                    break;
-            }
-        })
-    }, [props.value, menuOptions, props.selectedIndex, routes]);
+        activeIndex();
+    }, [path]);
+
 
     const tabs = (
         <>
@@ -232,7 +234,38 @@ export default function Header(props) {
                         sx={{
                             my: 16
                         }}>
-                        {routes.map((route, index) => (
+                        {routes.map((route, index) => route.name === 'Services' ? (
+                            <>
+                                <Accordion sx={{ backgroundColor: theme.palette.primary.main, borderBottom: '1px solid rgba(0,0,0,0.12)' }} elevation={0}>
+                                    <AccordionSummary expandIcon={<ExpandMoreIcon />}
+                                        sx={{
+                                            ...theme.typography.tab,
+                                            color: 'white',
+                                            opacity: 0.7
+                                        }}>
+                                        {route.name}
+                                    </AccordionSummary>
+                                    <AccordionDetails sx={{ padding: 0 }}>
+                                        <Grid container direction="column">
+                                            {menuOptions.map((option, index) => (
+                                                <Grid item>
+                                                    <ListItem
+                                                        key={`${option.name}-${index}`}
+                                                        divider
+                                                        button
+                                                        component={Link}
+                                                        href={option.link}
+                                                        onClick={() => { setOpenDrawer(false); props.setSelectedIndex(route.selectedIndex); }}
+                                                        selected={props.value === option.selectedIndex}>
+                                                        <ListItemText disableTypography>{option.name}</ListItemText>
+                                                    </ListItem>
+                                                </Grid>
+                                            ))}
+                                        </Grid>
+                                    </AccordionDetails>
+                                </Accordion>
+                            </>
+                        ) : (
                             <ListItem
                                 key={`${route.name}-${index}`}
                                 divider

@@ -65,6 +65,12 @@ const useStyles = makeStyles(theme => ({
     },
     serviceContainer: {
         marginTop: "12em",
+        [theme.breakpoints.down("sm")]: {
+            padding: 25
+        },
+        [theme.breakpoints.down("xs")]: {
+            padding: 5
+        },
     },
     reacolutionBackground: {
         backgroundImage: `url("/assets/repeatingBackground.svg")`,
@@ -224,11 +230,11 @@ export default function LendingPage(props) {
                                 Reach more. Discover more. Sell more.
                             </Typography>
                             <Typography variant="subtitle1">
-                                Optimized for Search Engines, built for speed.
+                                Optimized for Search Engines, {matchesXs && <br />} built for speed.
                             </Typography>
                             <Button component={Link}
                                 onClick={() => { props.setValue(1); props.setSelectedIndex(3); }}
-                                href="/websites" variant="outlined" className={classes.learnButton}>
+                                href="/website" variant="outlined" className={classes.learnButton}>
                                 <span style={{ marginRight: 10 }}>Lear more</span>
                                 <ButtonArrow
                                     width={10}

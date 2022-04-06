@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { makeStyles, useTheme } from '@mui/styles';
 import { Alert, Grid, Button, IconButton, Typography, Dialog, DialogContent, TextField, Hidden, CircularProgress, Snackbar } from '@mui/material';
@@ -299,6 +299,9 @@ const websiteQuestions = [
 export default function FreeEstimate(props) {
     const classes = useStyles();
     const theme = useTheme();
+    const matchesMd = useMediaQuery(theme.breakpoints.down('md'));
+    const matchesSm = useMediaQuery(theme.breakpoints.down("sm"));
+    const matchesXs = useMediaQuery(theme.breakpoints.down("xs"));
     const [questions, setQuestions] = useState(defaultQuestions);
     const [dialogOpen, setDialogOpen] = useState(false);
     const [disablePreviousNavigation, setDisablePreviousNavigation] = useState(false);
@@ -321,12 +324,14 @@ export default function FreeEstimate(props) {
     const [loading, setLoading] = useState(false);
     const [alert, setAlert] = useState({ open: false, message: '', severity: '' });
 
+    const myRef = useRef(null);
 
-    const matchesMd = useMediaQuery(theme.breakpoints.down('md'));
-    const matchesSm = useMediaQuery(theme.breakpoints.down("sm"));
-    const matchesXs = useMediaQuery(theme.breakpoints.down("xs"));
 
     const nextQuestion = () => {
+        if (matchesSm) {
+            window.scrollTo.apply(0, myRef.current.offsetTop + 75);
+        }
+
         const newQuestions = cloneDeep(questions);
         const currentlyActive = newQuestions.filter(q => q.active);
         const activeIndex = currentlyActive[0].id - 1;
@@ -339,6 +344,10 @@ export default function FreeEstimate(props) {
     }
 
     const previousQuestion = () => {
+        if (matchesSm) {
+            window.scrollTo.apply(0, myRef.current.offsetTop + 75);
+        }
+
         const newQuestions = cloneDeep(questions);
         const currentlyActive = newQuestions.filter(q => q.active);
         const activeIndex = currentlyActive[0].id - 1;
@@ -371,6 +380,9 @@ export default function FreeEstimate(props) {
 
         switch (newSelected.title) {
             case 'Custom Software Development':
+                if (matchesSm) {
+                    window.scrollTo.apply(0, myRef.current.offsetTop + 75);
+                }
                 setQuestions(softwareQuestions);
                 setService(newSelected.title);
                 setPlatforms([]);
@@ -380,6 +392,9 @@ export default function FreeEstimate(props) {
                 setUsers("");
                 break;
             case 'iOS/Android App Development':
+                if (matchesSm) {
+                    window.scrollTo.apply(0, myRef.current.offsetTop + 75);
+                }
                 setQuestions(softwareQuestions);
                 setService(newSelected.title);
                 setPlatforms([]);
@@ -389,6 +404,9 @@ export default function FreeEstimate(props) {
                 setUsers("");
                 break;
             case 'Website Development':
+                if (matchesSm) {
+                    window.scrollTo.apply(0, myRef.current.offsetTop + 75);
+                }
                 setQuestions(websiteQuestions);
                 setService(newSelected.title);
                 setPlatforms([]);
@@ -636,16 +654,24 @@ export default function FreeEstimate(props) {
 
     const estimateDisabled = () => {
         let disabled = true;
-        const emptySelections = questions.map((question) =>
-            question.options.filter((option) => true)).filter(question =>
-                question.length === 0);
+        const emptySelections = questions
+            .filter((question) => question.title !== "Whcih features do you expect to use?")
+            .map((question) =>
+                question.options.filter((option) => option.selected))
+            .filter(question => question.length === 0);
+
+        const featuresSelected = questions.filter((question) => question.title === "Whcih features do you expect to use?")
+            .map(question => question.options.filter(option => option.selected))
+            .filter(selection => selection.length > 0);
+
         if (questions.length === 2) {
             if (emptySelections.length === 1) {
                 disabled = false;
             }
         } else if (questions.length === 1) {
             disabled = true;
-        } else if (questions.length < 3 && questions[questions.lengt - 1].options.filter(option => option.selected).length > 0) {
+        } else if (emptySelections.length === 1 &&
+            featuresSelected.length > 0) {
             disabled = false;
         }
 
@@ -713,7 +739,7 @@ export default function FreeEstimate(props) {
                 {
                     questions.filter(question => question.active).map((question, index) => (
                         <React.Fragment key={index}>
-                            <Grid item>
+                            <Grid item ref={myRef}>
                                 <Typography
                                     variant="h1"
                                     align="center"

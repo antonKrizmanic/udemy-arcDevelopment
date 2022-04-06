@@ -25,6 +25,12 @@ const useStyles = makeStyles(theme => ({
     },
     serviceContainer: {
         marginTop: "10em",
+        [theme.breakpoints.down("sm")]: {
+            padding: 25
+        },
+        [theme.breakpoints.down("xs")]: {
+            padding: 5
+        },
     },
 }));
 
@@ -136,7 +142,7 @@ export default function Services(props) {
                         </Typography>
                         <Button component={Link}
                             onClick={() => { props.setValue(1); props.setSelectedIndex(3); }}
-                            href="/websites" variant="outlined" className={classes.learnButton}>
+                            href="/website" variant="outlined" className={classes.learnButton}>
                             <span style={{ marginRight: 10 }}>Lear more</span>
                             <ButtonArrow
                                 width={10}
